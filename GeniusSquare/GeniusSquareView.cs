@@ -13,6 +13,8 @@ namespace GeniusSquare
 {
     public partial class GeniusSquareView : UserControl
     {
+        public CompoundPiece? CurrentPiece;
+
         private int rows = 8;
         [Browsable(true)]
         public int Rows
@@ -71,7 +73,7 @@ namespace GeniusSquare
 
         Location? LocationFromXY(int x, int y)
         {
-            if(HitTest(x, y))
+            if (HitTest(x, y))
             {
                 Location l = new Location();
                 l.Column = ((x - border) / blockWidth) - 1;
@@ -143,18 +145,45 @@ namespace GeniusSquare
             // draw pieces
             foreach (Piece piece in Pieces)
             {
-                Rectangle r = new Rectangle(GetX(piece.Location.Column) + 1, GetY(piece.Location.Row) + 1,
-                    blockWidth - 2, blockHeight - 2);
-                e.Graphics.FillRectangle(new SolidBrush(piece.Color), r);
+                if (piece.GetType() == typeof(CompoundPiece))
+                {
+                    CompoundPiece compoundPiece = (CompoundPiece)piece;
+                    foreach (Location l in compoundPiece.GetLocations())
+                    {
+                        Rectangle r = new Rectangle(GetX(piece.Location.Column + l.Column) + 1, GetY(piece.Location.Row + l.Row) + 1,
+                        blockWidth - 2, blockHeight - 2);
+                        e.Graphics.FillRectangle(new SolidBrush(piece.Color), r);
+                    }
+                }
+                else
+                {
+                    Rectangle r = new Rectangle(GetX(piece.Location.Column) + 1, GetY(piece.Location.Row) + 1,
+                        blockWidth - 2, blockHeight - 2);
+                    e.Graphics.FillRectangle(new SolidBrush(piece.Color), r);
+                }
             }
 
             // draw selection
-            if(selectedLocation != null)
+            if (selectedLocation != null)
             {
-                Rectangle r = new Rectangle(GetX(selectedLocation.Column) + 2, GetY(selectedLocation.Row) + 2,
-                    blockWidth - 4, blockHeight - 4);
-                e.Graphics.FillRectangle(new SolidBrush(Color.Bisque), r);
+                if (CurrentPiece != null)
+                {
+                    foreach (Location l in CurrentPiece.GetLocations())
+                    {
+                        Rectangle r = new Rectangle(GetX(selectedLocation.Column + l.Column) + 1, GetY(selectedLocation.Row + l.Row) + 1,
+                        blockWidth - 2, blockHeight - 2);
+                        e.Graphics.FillRectangle(new SolidBrush(CurrentPiece.Color), r);
+                    }
+                }
+                else
+                {
+                    Rectangle r = new Rectangle(GetX(selectedLocation.Column) + 2, GetY(selectedLocation.Row) + 2,
+                        blockWidth - 4, blockHeight - 4);
+                    e.Graphics.FillRectangle(new SolidBrush(Color.Bisque), r);
+                }
             }
+
+            
         }
 
         private void GeniusSquareView_SizeChanged(object sender, EventArgs e)
@@ -170,16 +199,29 @@ namespace GeniusSquare
             Location? previousLocation = selectedLocation;
             selectedLocation = LocationFromXY(e.X, e.Y);
 
-            if(selectedLocation == null || previousLocation == null)
+            if (selectedLocation == null || previousLocation == null)
             {
-                
-            } else
 
-            if(selectedLocation.ToString() != previousLocation.ToString() )
-            {
-                Invalidate();                
             }
-            
+            else
+
+            if (selectedLocation.ToString() != previousLocation.ToString())
+            {
+                Invalidate();
+            }
+
+        }
+
+        private void GeniusSquareView_MouseDown(object sender, MouseEventArgs e)
+        {
+            if(e.Button == MouseButtons.Right)
+            {
+                if (CurrentPiece != null)
+                {
+                    CurrentPiece.Rotate();
+                    Invalidate();
+                }
+            }
         }
     }
 }

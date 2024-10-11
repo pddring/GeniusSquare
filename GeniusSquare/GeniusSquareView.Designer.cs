@@ -39,6 +39,7 @@
             Size = new Size(437, 339);
             SizeChanged += GeniusSquareView_SizeChanged;
             Paint += GeniusSquareView_Paint;
+            MouseDown += GeniusSquareView_MouseDown;
             MouseMove += GeniusSquareView_MouseMove;
             ResumeLayout(false);
         }

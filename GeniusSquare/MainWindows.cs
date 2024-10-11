@@ -8,9 +8,11 @@ namespace GeniusSquare
         }
 
         Game gs = new Game();
+        int index = 0;
 
         private void MainWindows_Load(object sender, EventArgs e)
         {
+            viewer.CurrentPiece = gs.compoundPieces[index];
         }
 
         private void btnRoll_Click(object sender, EventArgs e)
@@ -31,5 +33,20 @@ namespace GeniusSquare
             }
         }
 
+        private void MainWindows_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Left)
+            {
+                index--;
+                if (index < 0) index = gs.compoundPieces.Count - 1;
+            }
+            if (e.KeyCode == Keys.Right)
+            {
+                index++;
+                if (index > gs.compoundPieces.Count - 1) index = 0;
+            }
+            viewer.CurrentPiece = gs.compoundPieces[index];
+            viewer.Invalidate();
+        }
     }
 }

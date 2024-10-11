@@ -69,9 +69,11 @@
             Controls.Add(btnRoll);
             Controls.Add(lstLog);
             Controls.Add(viewer);
+            KeyPreview = true;
             Name = "MainWindows";
             Text = "GeniusSquare";
             Load += MainWindows_Load;
+            KeyDown += MainWindows_KeyDown;
             ResumeLayout(false);
         }
 
