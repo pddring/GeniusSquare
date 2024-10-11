@@ -28,29 +28,57 @@
         /// </summary>
         private void InitializeComponent()
         {
-            geniusSquareView1 = new GeniusSquareView();
+            viewer = new GeniusSquareView();
+            lstLog = new ListBox();
+            btnRoll = new Button();
             SuspendLayout();
             // 
-            // geniusSquareView1
+            // viewer
             // 
-            geniusSquareView1.Location = new Point(106, 43);
-            geniusSquareView1.Name = "geniusSquareView1";
-            geniusSquareView1.Size = new Size(549, 348);
-            geniusSquareView1.TabIndex = 0;
+            viewer.Cols = 8;
+            viewer.Location = new Point(12, 21);
+            viewer.Name = "viewer";
+            viewer.Rows = 8;
+            viewer.Size = new Size(338, 376);
+            viewer.TabIndex = 0;
+            // 
+            // lstLog
+            // 
+            lstLog.FormattingEnabled = true;
+            lstLog.ItemHeight = 15;
+            lstLog.Location = new Point(419, 45);
+            lstLog.Name = "lstLog";
+            lstLog.Size = new Size(369, 304);
+            lstLog.TabIndex = 1;
+            // 
+            // btnRoll
+            // 
+            btnRoll.Location = new Point(419, 374);
+            btnRoll.Name = "btnRoll";
+            btnRoll.Size = new Size(75, 23);
+            btnRoll.TabIndex = 2;
+            btnRoll.Text = "Roll";
+            btnRoll.UseVisualStyleBackColor = true;
+            btnRoll.Click += btnRoll_Click;
             // 
             // MainWindows
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(geniusSquareView1);
+            Controls.Add(btnRoll);
+            Controls.Add(lstLog);
+            Controls.Add(viewer);
             Name = "MainWindows";
             Text = "GeniusSquare";
+            Load += MainWindows_Load;
             ResumeLayout(false);
         }
 
         #endregion
 
-        private GeniusSquareView geniusSquareView1;
+        private GeniusSquareView viewer;
+        private ListBox lstLog;
+        private Button btnRoll;
     }
 }

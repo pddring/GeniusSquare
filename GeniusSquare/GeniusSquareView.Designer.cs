@@ -34,9 +34,12 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            DoubleBuffered = true;
             Name = "GeniusSquareView";
             Size = new Size(437, 339);
+            SizeChanged += GeniusSquareView_SizeChanged;
             Paint += GeniusSquareView_Paint;
+            MouseMove += GeniusSquareView_MouseMove;
             ResumeLayout(false);
         }
 
