@@ -1,0 +1,56 @@
+﻿namespace GeniusSquare
+{
+    partial class MainWindows
+    {
+        /// <summary>
+        ///  Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        ///  Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        ///  Required method for Designer support - do not modify
+        ///  the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            geniusSquareView1 = new GeniusSquareView();
+            SuspendLayout();
+            // 
+            // geniusSquareView1
+            // 
+            geniusSquareView1.Location = new Point(106, 43);
+            geniusSquareView1.Name = "geniusSquareView1";
+            geniusSquareView1.Size = new Size(549, 348);
+            geniusSquareView1.TabIndex = 0;
+            // 
+            // MainWindows
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(800, 450);
+            Controls.Add(geniusSquareView1);
+            Name = "MainWindows";
+            Text = "GeniusSquare";
+            ResumeLayout(false);
+        }
+
+        #endregion
+
+        private GeniusSquareView geniusSquareView1;
+    }
+}
