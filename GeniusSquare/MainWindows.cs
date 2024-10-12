@@ -35,6 +35,18 @@ namespace GeniusSquare
 
         private void MainWindows_KeyDown(object sender, KeyEventArgs e)
         {
+            if(e.KeyCode == Keys.S)
+            {
+                if(viewer.CurrentPiece != null)
+                {
+                    List<string> combinations = viewer.CurrentPiece.GetAllCombinations();
+                    lstLog.Items.Add($"{combinations.Count} unique positions:");
+                    foreach (string combination in combinations)
+                    {
+                        lstLog.Items.Add($" '{combination}'");
+                    }   
+                }
+            }
             if (e.KeyCode == Keys.Left)
             {
                 index--;
@@ -44,6 +56,17 @@ namespace GeniusSquare
             {
                 index++;
                 if (index > gs.compoundPieces.Count - 1) index = 0;
+            }
+            if (viewer.CurrentPiece != null)
+            {
+                if (e.KeyCode == Keys.Up)
+                {
+                    viewer.CurrentPiece.Direction = Direction.FaceUp;
+                }
+                if (e.KeyCode == Keys.Down)
+                {
+                    viewer.CurrentPiece.Direction = Direction.FaceDown;
+                }
             }
             viewer.CurrentPiece = gs.compoundPieces[index];
             viewer.Invalidate();

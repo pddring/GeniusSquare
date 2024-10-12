@@ -23,14 +23,14 @@ namespace GeniusSquare
             dice.Add(new Dice(new string[] { "A5", "F2", "A5", "F2", "B6", "E1" }));
 
             // create coloured pieces
-            compoundPieces.Add(new CompoundPiece(Color.Red, "XX\n XX"));
-            compoundPieces.Add(new CompoundPiece(Color.Green, "XX\nXX"));
-            compoundPieces.Add(new CompoundPiece(Color.Yellow, "XXX\n X"));
-            compoundPieces.Add(new CompoundPiece(Color.Orange, "X\nX\nX"));
-            compoundPieces.Add(new CompoundPiece(Color.Brown, "X\nX"));
-            compoundPieces.Add(new CompoundPiece(Color.Blue, "X\nX\nXX"));
+            compoundPieces.Add(new CompoundPiece(Color.Red, "XX| XX"));
+            compoundPieces.Add(new CompoundPiece(Color.Green, "XX|XX"));
+            compoundPieces.Add(new CompoundPiece(Color.Yellow, "XXX| X"));
+            compoundPieces.Add(new CompoundPiece(Color.Orange, "X|X|X"));
+            compoundPieces.Add(new CompoundPiece(Color.Brown, "X|X"));
+            compoundPieces.Add(new CompoundPiece(Color.Blue, "X|X|XX"));
             compoundPieces.Add(new CompoundPiece(Color.DarkBlue, "X"));
-            compoundPieces.Add(new CompoundPiece(Color.Purple, " X\nXX"));
+            compoundPieces.Add(new CompoundPiece(Color.Purple, " X|XX"));
             compoundPieces.Add(new CompoundPiece(Color.Gray, "XXXX"));
         }
 
